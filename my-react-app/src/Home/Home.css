@@ -1,0 +1,145 @@
+*{
+  padding:0;
+  outline:0;
+  margin:0;
+  box-sizing:border-box;
+  font-family:  Amatic SC,sans-serif;
+}
+
+.Image{
+  background-image:url("../Assets/tutor_image.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height:55vh;
+  width:100%;
+}
+
+.MainText{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  position:relative;
+  top:20vh;
+  font-size:28px;
+  font-weight:700;
+}
+.TextCard{
+  DISPLAY:FLEX;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding-left: 20%;
+  background-color:#83b8ff;
+  position:relative;
+  padding:20px;
+}
+.count{
+  height:55px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-direction:row;
+  padding:3% 15%;
+  background-color: #c6cdff;
+  font-size:20px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  margin-bottom:20px;
+  width:100%;
+  position:relative;
+}
+.signUp{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.toggle-buttons{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:400px;
+  font-size:20px;
+  border-bottom:1px solid #fff;
+}
+.toggle-buttons button{
+  width:300px;
+  height:40px;
+  background-color:#83b8ff;
+  border:none;
+  color:white;
+  font-size:22px;
+}
+.ParentSignupButton{
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius:10px 0 0 0 ;
+}
+.TutorSignupButton {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius:0 10px 0 0 ;
+}
+
+.ParentSignupButton.active, .TutorSignupButton.active {
+  background-color: #248bd6;
+  color: #000;
+}
+.signUp-form{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  width:400px;
+  background-color:#83b8ff;
+  padding:20px;
+  border-radius:0 0 10px 10px;
+  margin-bottom:10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+.signUp-form input{
+  margin:5px;
+  padding:5px;
+  width:300px;
+  border-radius:8px;
+  border:none;
+}
+.signUp-form button{
+  width:300px;
+  height:40px;
+  border:none;
+  color:white;
+  background-color: #248bd6;
+  font-size:20px;
+  margin-top:10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition: all 0.3s ease;
+}
+.signUp-form button:hover{
+  transform:scale(1.05);
+}
+
+.instructions{
+  display:flex;
+  justify-content:space-between;
+  margin-top:30px;
+  padding:40px;
+  width:auto;
+  background-color:#c6cdff;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+.how{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+  background-color:#83b8ff;
+  color:white;
+}

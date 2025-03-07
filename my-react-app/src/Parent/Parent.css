@@ -1,0 +1,42 @@
+.parent-container{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+.parent-textcard{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  width:100%;
+  background-color:#83b8ff;
+  padding:20px;
+  margin-bottom:29px;
+  border-radius:0 0 10px 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+.parent-textcard h1{
+  font-size:40px;
+  margin-bottom:10px ;
+}
+.parent-textcard p{
+  font-size:18px;
+  margin-bottom:10px ;
+}
+.tutor-request button{
+  height:60px;
+  padding:10px;
+  border:none;
+  color:white;
+  font-size:20px;
+  text-align:center;
+  background-color:#248bd6;
+  border-radius:10px;
+  cursor: pointer;
+}
+.tutor-request button:hover{
+  transform:scale(1.05);
+}

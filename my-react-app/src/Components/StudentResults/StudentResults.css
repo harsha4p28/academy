@@ -1,0 +1,54 @@
+.StudentResults{
+  width:90%;
+}
+.StudentResults h3{
+  text-align:center;
+  margin:20px 0;
+}
+.StudentCard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap:15px;
+  grid-row-gap:15px;
+  margin-bottom:20px;
+}
+.StudentDetails{
+  background-color:#C6cdff;
+  padding:15px;
+  border-radius:5px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+.StudentDetails button{
+  background-color:#248bd6;
+  color:white;
+  width:50%;
+  border:none;
+  height:30px;
+  border-radius:5px;
+  cursor:pointer;
+  margin-top:15px;
+  font-size:16px;
+}
+
+.StudentDetails button:hover{
+  background-color:#1F74B0;
+  transform:scale(1.05);
+}
+.load{
+  text-align:center;
+  margin-bottom:15px;
+}
+.load button{
+  width:15%;
+  height:30px;
+  background-color:#248bd6;
+  color:white;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  cursor:pointer;
+}
+.load button:hover{
+  background-color:#1F74B0;
+  transform:scale(1.05);
+}

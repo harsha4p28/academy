@@ -1,0 +1,54 @@
+.children-container{
+  width:90%;
+}
+.children-card{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap:15px;
+  grid-row-gap:15px;
+  margin-bottom:20px;
+}
+.child-details{
+  background-color:#C6cdff;
+  padding:15px;
+  border-radius:5px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.child-details button{
+  width:30%;
+  margin-top:10px;
+  background-color:#248bd6;
+  padding:8px;
+  border:none;
+  border-radius:5px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+
+
+}
+.child-details button:hover{
+  background-color:#1F74B0;
+  transform:scale(1.05);
+}
+.addChild{
+  width:100%;
+  text-align:center;
+}
+.addChild button{
+  width:10%;
+  padding:10px;
+  background-color:#248bd6;
+  color:white;
+  border:none;
+  border-radius:5px;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.addChild button:hover{
+  background-color:#1F74B0;
+  transform:scale(1.05);
+}
