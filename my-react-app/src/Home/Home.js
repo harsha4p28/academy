@@ -52,7 +52,7 @@ const Home = () => {
       <div className="signUp">
         <div className="toggle-buttons">
           <button
-            type="button"
+            type="button" 
             className={`ParentSignupButton ${isParentSignupVisible ? "active" : ""}`}
             onClick={() => setIsParentSignupVisible(true)}
           >

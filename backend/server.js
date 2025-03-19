@@ -1,16 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const connectDB = require("./database");
+const User = require("./models/User")
 
 const app = express();
 const PORT = 5000;
 
-// Enable CORS for the React frontend (running on port 3000)
 app.use(cors({
-  origin: 'http://localhost:3000', // Update this URL based on your React app's URL
+  origin: 'http://localhost:3000', 
   credentials: true
 }));
 app.use(bodyParser.json());
+
+connectDB();
 
 // Parent Registration
 app.post('/register-parent', (req, res) => {
@@ -31,6 +34,17 @@ app.post('/tutor-register', (req, res) => {
   console.log('Tutor Registered:', req.body);
   res.status(201).json({ message: 'Tutor registered successfully!' });
 });
+
+//Login
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password ) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+  console.log('Logged in :', req.body);
+  res.status(201).json({ message: 'Login successfull!' });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

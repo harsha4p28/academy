@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = 'http://localhost:5000/tutor-register'; // Full backend URL
+//const REGISTER_URL = 'http://localhost:5000/tutor-register'; // Full backend URL
 
 const TutorSignup = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ const TutorSignup = () => {
 
     try {
       const response = await axios.post(
-        REGISTER_URL,
+        '/tutor-register',
         JSON.stringify({ name, email, phone, address, city, state, postalCode, experience, password }),
         { headers: { 'Content-Type': 'application/json' } }
       );
