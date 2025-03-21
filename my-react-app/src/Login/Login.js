@@ -44,6 +44,7 @@ const Login = () => {
             <input
               type="email"
               id="email"
+              className='login_email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -54,6 +55,7 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              className='login_password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

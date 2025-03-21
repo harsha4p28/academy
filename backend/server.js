@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const connectDB = require("./database");
-const User = require("./models/User")
+//const connectDB = require("./database");
+//const User = require("./models/User")
 
 const app = express();
 const PORT = 5000;
@@ -13,7 +13,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-connectDB();
+//connectDB();
 
 // Parent Registration
 app.post('/register-parent', (req, res) => {
