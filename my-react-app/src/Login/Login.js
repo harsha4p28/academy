@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState , useContext,useRef ,useEffect  } from 'react';
+import AuthContext from '../context/AuthProvider';
+import useAuth
+ from '../hooks/useAuth';
 import './Login.css';
-import { Link } from "react-router-dom";
+import { Link , useLocation,useNavigate } from "react-router-dom";
 import axios from "../api/axios"
 
 const Login = () => {
@@ -8,6 +11,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const {setAuth} = useContext(AuthContext);
+  const navigate= useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  
+  const userRef=useRef();
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,15 +34,28 @@ const Login = () => {
       const response = await axios.post(
         "/login",
         JSON.stringify({email,password}),
-        { headers: { 'Content-Type': 'application/json' } }
+        {
+           headers: { 'Content-Type': 'application/json' },
+           withCredentials: true
+       }
       );
-      console.log(response?.data);
+      console.log(response?.data); 
+      console.log(response?.data?.role);
       setSuccess(true);
-    } catch(e) {
-      setErrMsg("Login Failed" + e);
+      setAuth({email,role:response?.data?.role, userId : response?.data?.userId});
+      console.log("Login successful", response?.data?.userId );
+      navigate(from , {replace:true});
+      setEmail('');
+      setPassword('');
+      setTimeout(() => {
+        setSuccess('');
+      }, 2000);
+    } catch(err) {
+      setErrMsg("Login Failed" );
+      setTimeout(() => {
+        setErrMsg('');
+      }, 2000);
     }
-
-
   };
 
   return (
@@ -45,6 +71,7 @@ const Login = () => {
               type="email"
               id="email"
               className='login_email'
+              ref={userRef}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

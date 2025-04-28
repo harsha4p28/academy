@@ -1,11 +1,13 @@
 .StudentResults{
   width:90%;
+  margin: auto;
 }
 .StudentResults h3{
   text-align:center;
   margin:20px 0;
 }
 .StudentCard{
+  
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
   grid-column-gap:15px;
@@ -13,6 +15,9 @@
   margin-bottom:20px;
 }
 .StudentDetails{
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto ;
   background-color:#C6cdff;
   padding:15px;
   border-radius:5px;
@@ -21,13 +26,13 @@
 .StudentDetails button{
   background-color:#248bd6;
   color:white;
-  width:50%;
-  border:none;
-  height:30px;
+  width:30%;
+  padding: 10px 15px;
+  border: none;
   border-radius:5px;
-  cursor:pointer;
-  margin-top:15px;
   font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
 }
 
 .StudentDetails button:hover{

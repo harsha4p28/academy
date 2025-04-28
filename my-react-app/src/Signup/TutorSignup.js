@@ -4,7 +4,6 @@ import axios from "../api/axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-//const REGISTER_URL = 'http://localhost:5000/tutor-register'; // Full backend URL
 
 const TutorSignup = () => {
   const [formData, setFormData] = useState({
@@ -43,9 +42,10 @@ const TutorSignup = () => {
 
     try {
       const response = await axios.post(
-        '/tutor-register',
-        JSON.stringify({ name, email, phone, address, city, state, postalCode, experience, password }),
-        { headers: { 'Content-Type': 'application/json' } }
+        '/register',
+        JSON.stringify({ name, email, phone, address, city, state, postalCode, password,experience, role: 'Tutor' }),
+        { headers: { 'Content-Type': 'application/json'} ,
+        withCredentials:true }
       );
       console.log(response?.data);
       setSuccess(true);
@@ -61,8 +61,15 @@ const TutorSignup = () => {
         password: '',
         confirmPassword: ''
       });
-    } catch(e) {
-      setErrMsg('Registration Failed'+ e);
+    } catch(err) {
+      if (!err?.response) {
+        setErrMsg('No Server Response');
+      }else {
+          setErrMsg('Registration Failed')
+      }
+      setTimeout(() => {
+        setErrMsg('');
+      }, 2000);
     }
   };
 
@@ -81,7 +88,6 @@ const TutorSignup = () => {
         <input type="text" name="experience" placeholder="Experience (in years)" value={formData.experience} onChange={handleChange} required />
         <input type="password" name="password" placeholder="Tutor Password" value={formData.password} onChange={handleChange} required />
         <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
-
         {errMsg && <p style={{ color: 'red' }}>{errMsg}</p>}
         {success && <p style={{ color: 'green' }}>Registration Successful!<br /> <Link to="/login">Login here</Link></p>}
 

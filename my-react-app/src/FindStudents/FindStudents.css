@@ -1,0 +1,77 @@
+.tutor-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+  .search-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background-color:#83b8ff;
+    width:100%;
+    padding:30px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    line-height:30px;
+  }
+  .tutor-textcard h1{
+    font-size:40px;
+    margin-bottom:10px;
+  }
+  .tutor-textcard h3{
+    font-size:20px;
+    margin-bottom:10px;
+  }
+  .search-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex:1;
+    width:100%;
+     margin-top:10px;
+  }
+  .search-box input{
+    padding:10px;
+    width:30%;
+    border-radius:8px 0 0 8px;
+    border:none;
+    font-size:17px;
+  
+  }
+  .search-box button{
+    padding:10px;
+    width:10%;
+    border-radius:0 8px 8px 0;
+    border:none;
+    font-size:17px;
+    background-color:#248bd6;
+    color:white;
+    cursor:pointer;
+    transition: all 0.4s ease;
+  }
+  .search-box button:hover{
+    background-color:#1F74B0;
+    transform:scale(1.05);
+  }
+  .studentsResultsContainer h3{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+.studentResults{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  padding: 10px;
+  grid-column-gap:15px;
+  grid-row-gap:15px;
+  margin-bottom:20px;
+}
+.noStudentsFound{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 20px;
+}

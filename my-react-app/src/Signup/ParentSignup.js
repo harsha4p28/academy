@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef,useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-//const REGISTER_URL = 'http://localhost:5000/register-parent'; // Full backend URL
 
 const ParentSignup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,11 +21,16 @@ const ParentSignup = () => {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const userRef= useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+      userRef.current.focus();
+    }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,18 +39,25 @@ const ParentSignup = () => {
 
     if (!USER_REGEX.test(name) || !PWD_REGEX.test(password)) {
       setErrMsg("Invalid Name or Password");
+      setTimeout(() => {
+        setErrMsg('');
+      }, 2000);
       return;
     }
     if (password !== confirmPassword) {
       setErrMsg("Passwords do not match");
+      setTimeout(() => {
+        setErrMsg('');
+      }, 2000);
       return;
     }
 
     try {
       const response = await axios.post(
-        '/register-parent',
-        JSON.stringify({ name, email, phone, address, city, state, postalCode, password }),
-        { headers: { 'Content-Type': 'application/json' } }
+        '/register',
+        JSON.stringify({ name, email, phone, address, city, state, postalCode, password ,role: 'Parent'}),
+        { headers: { 'Content-Type': 'application/json'} ,
+        withCredentials:true },
       );
       console.log(response?.data);
       setSuccess(true);
@@ -60,8 +72,19 @@ const ParentSignup = () => {
         password: '',
         confirmPassword: ''
       });
+      navigate('/login');
+      setTimeout(() => {  
+        setSuccess(false);
+      }, 2000);
     } catch (err) {
-      setErrMsg(err.response?.data?.message || 'Registration Failed');
+      if (!err?.response) {
+        setErrMsg('No Server Response');
+      }else {
+          setErrMsg('Registration Failed')
+      }
+      setTimeout(() => {
+        setErrMsg('');
+      }, 2000);
     }
   };
 
@@ -71,7 +94,7 @@ const ParentSignup = () => {
         <h3>Sign up today to start connecting with tutors!</h3>
 
         <input 
-          type="text" name="name" placeholder="Parent Name" 
+          type="text" name="name" ref={userRef} placeholder="Parent Name" 
           value={formData.name} onChange={handleChange} required 
         />
         <input 
@@ -106,13 +129,12 @@ const ParentSignup = () => {
           type="password" name="confirmPassword" placeholder="Confirm Parent Password" 
           value={formData.confirmPassword} onChange={handleChange} required 
         />
-
         {errMsg && <p style={{ color: 'red' }}>{errMsg}</p>}
         {success && <p style={{ color: 'green' }}>Registration Successful!<br /><Link to="/login">Login here</Link></p>}
 
         <button 
           type="submit" 
-          disabled={formData.password !== formData.confirmPassword}
+          
         >
           Sign Up
         </button>

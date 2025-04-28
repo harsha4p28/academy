@@ -1,5 +1,6 @@
 .children-container{
   width:90%;
+  margin: auto ;
 }
 .children-card{
   display:grid;
@@ -9,6 +10,7 @@
   margin-bottom:20px;
 }
 .child-details{
+  max-width: 400px;
   background-color:#C6cdff;
   padding:15px;
   border-radius:5px;

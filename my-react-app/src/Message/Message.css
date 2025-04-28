@@ -1,0 +1,104 @@
+.wholeMessageContainer{
+  display: flex;
+  
+}
+.messageContainer {
+    max-width: 35%;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .messageMainContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .messageHeader {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .messageHeader h1 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .messageSearch {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .messageSearch input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .messageSearch button {
+    padding: 10px 20px;
+    background-color: #248bd6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .messageSearch button:hover {
+    background-color: #007bff;
+  }
+  
+  .messageSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .participantCard {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .participantCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .participantCard img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .participantCard div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .participantCard h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .participantCard p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 14px;
+  }
+  

@@ -1,28 +1,37 @@
-import React from "react";
+import React from 'react';
 import "./Tutor.css";
-import StudentResults from "../Components/StudentResults/StudentResults";
+import useAuth from "../hooks/useAuth";
+import { Link } from 'react-router-dom';
 
 const Tutor = () => {
+  const { auth } = useAuth();
+
   return (
-    <div className="tutor-container">
-      <div className="search-container">
-        <div className="tutor-textcard">
-          <h1>Welcome back Tutor</h1>
-          <h3>You can search students for free based on your location</h3>
-          <p>
-            We don't charge any fees. We simply act as a middleman between
-            parents and tutors.< br /> Our goal is to connect both parties without any
-            extra cost.
-          </p>
+    <div className='tutorContainer'>
+      <div className='tutorMainContainer'>
+        <h1>Welcome, {auth?.user?.name || 'Tutor'}!</h1>
+        
+        <div className="tutorSection">
+          <h2>Students Looking for Tutors</h2>
+          <p>📚 No students found yet. Start by updating your availability!</p>
         </div>
-        <div className="search-box">
-          <input type="text" placeholder="Search for students" />
-          <button>Search</button>
+
+        <div className="tutorSection">
+          <h2>Pending Requests</h2>
+          <p>🕒 You have no pending student requests.</p>
+        </div>
+
+        <div className="tutorChildSection">
+          <h2>Your Students</h2>
+          <p> No students added yet. Start by adding your students!</p>
+        </div>
+
+        <div className="tutorActions">
+          <p><Link to="/message">Open messages</Link></p>
         </div>
       </div>
-      <StudentResults />
     </div>
-  );
-};
+  )
+}
 
 export default Tutor;
