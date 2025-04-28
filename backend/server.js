@@ -7,6 +7,7 @@ const cors = require('cors');
 const mongoose= require("mongoose");
 const bcrypt= require("bcrypt");
 require("dotenv").config();
+const MongoStore = require('connect-mongo');
 
 
 const {User, Children, User2} = require("./model/users"); 
@@ -14,11 +15,19 @@ const {Message, Conversation} = require("./model/messages");
 
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 
 const MONGO_URI="mongodb+srv://harsha4p28:%23Master%40281@cluster0.ptfakgc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const JWT_SECRET = 'aesdththbgju';
+
+const isProduction = process.env.NODE_ENV === 'production';
+const allowedOrigins = isProduction
+  ? ['https://frontend-dot-tutorsacademy143.uc.r.appspot.com']
+  : [
+      'https://frontend-dot-tutorsacademy143.uc.r.appspot.com',
+      'http://localhost:3000',
+    ];
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -28,10 +37,18 @@ mongoose.connect(MONGO_URI, {
 .catch(err => console.error("MongoDB connection error:", err));
 
 
-app.use(cors({
-  origin: 'http://localhost:3000', 
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -43,9 +60,15 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: isProduction,
+    sameSite: isProduction ? 'None' : 'Lax',
     maxAge: 24 * 60 * 60 * 1000, 
-  }
+  },
+  store: MongoStore.create({
+    mongoUrl: MONGO_URI,
+    ttl: 24 * 60 * 60, 
+    autoRemove: 'disabled',
+  }),
 }));
 
 
@@ -109,7 +132,7 @@ app.post('/login', async (req, res) => {
       const token = jwt.sign({ userId: foundUser._id }, JWT_SECRET, { expiresIn: "1h" });
       res.cookie("token", token, {
         httpOnly: true,
-        secure: false, 
+        secure: isProduction, 
         sameSite: "Lax",
         maxAge: 3600000, 
       });

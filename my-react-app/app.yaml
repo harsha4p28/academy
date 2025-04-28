@@ -1,0 +1,15 @@
+runtime: nodejs20 
+instance_class: F1
+service: frontend
+
+handlers:
+  - url: /static
+    static_dir: build/static
+
+  - url: /(.*\.(js|css|ico|png|jpg|jpeg|gif|svg|json)(.gz)?)$
+    static_files: build/\1
+    upload: build/.*\.(js|css|ico|png|jpg|jpeg|gif|svg|json)(.gz)?$
+
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
