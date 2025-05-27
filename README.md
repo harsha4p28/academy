@@ -33,7 +33,7 @@
 
 Follow these steps to set up and run the Tutors Academy project on your local machine.
 
--- **Clone the Repository**
+- **Clone the Repository**
 
 Open your terminal and run:
 
