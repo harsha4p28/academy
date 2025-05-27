@@ -29,4 +29,14 @@
 - **Authentication**: JWT (JSON Web Tokens)
 - **Styling**: Responsive and user-friendly UI
 
+## Installation
+
+Follow these steps to set up and run the Tutors Academy project on your local machine.
+
+-- **Clone the Repository**
+
+Open your terminal and run:
+
+git clone https://github.com/harsha4p28/academy.git
+cd academy
 
